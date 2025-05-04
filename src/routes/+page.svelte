@@ -18,7 +18,9 @@
     });
     console.log(images);
 </script>
-
+<svelte:head>
+    <title>Homepage</title>
+</svelte:head>
 <h1>Favorite albums</h1>
 
 <div class="imageset">

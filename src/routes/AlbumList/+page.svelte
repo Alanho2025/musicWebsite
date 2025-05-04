@@ -2,7 +2,9 @@
     import FlowSong from "$lib/components/FlowSong.svelte";
     import TagFlow from "$lib/components/TagFlow.svelte";
 </script>
-
+<svelte:head>
+    <title>Album List</title>
+</svelte:head>
 <div class="tagLayout">
     <TagFlow />
 </div>

@@ -27,7 +27,7 @@
 
 			// ✅ 自動跳轉到第一首歌
 			if (browser && initialized.length > 0) {
-				goto(`/MusicPlayer/${initialized[0].id}`, { replaceState: true });
+				goto(`/MusicPlayer/${initialized[0].id}`);
 			}
 		}
 	});
