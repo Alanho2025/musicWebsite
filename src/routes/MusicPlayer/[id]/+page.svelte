@@ -3,6 +3,7 @@
 	import { page } from "$app/stores";
 	import { get } from "svelte/store";
 	import { songsStore, sortingSongsStore } from "$lib/stores/SongsRestore.js";
+	import { goto } from "$app/navigation";
 
 	let sortingSong = null; // 用 local 狀態管理選中的歌曲
 	let initialized = false;
@@ -75,9 +76,38 @@
 		replyInputs[index] = "";
 		replyStates[index] = false;
 	}
+
+	function goback() {
+		const source =
+			$sortingSongsStore.length > 0 ? $sortingSongsStore : $songsStore;
+		const currentIndex = source.findIndex(
+			(song) => String(song.id) === $page.params.id
+		);
+
+		if (currentIndex > 0) {
+			const previousSongId = source[currentIndex - 1].id;
+			goto(`/MusicPlayer/${previousSongId}`);
+		}
+	}
+	function gonext() {
+		const source =
+			$sortingSongsStore.length > 0 ? $sortingSongsStore : $songsStore;
+		const currentIndex = source.findIndex(
+			(song) => String(song.id) === $page.params.id
+		);
+
+		if (currentIndex < source.length - 1) {
+			const nextSongId = source[currentIndex + 1].id;
+			goto(`/MusicPlayer/${nextSongId}`);
+		}
+	}
 </script>
 
 {#if sortingSong}
+	<div class="buttonToplayout">
+		<button on:click={() => goback()}>&larr; Previous</button>
+		<button on:click={() => gonext()}>Next &rarr;</button>
+	</div>
 	<iframe
 		width="1200"
 		height="600"
@@ -135,6 +165,30 @@
 {/if}
 
 <style>
+	.buttonToplayout button {
+		background: linear-gradient(145deg, #cfd2d6, #eceff1);
+		border: none;
+		color: #333;
+		padding: 0.6rem 1.5rem;
+		margin: 0 0.5rem;
+		border-radius: 2rem;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+		font-weight: bold;
+		cursor: pointer;
+		transition: all 0.3s ease;
+	}
+
+	.buttonToplayout button:hover {
+		background: linear-gradient(145deg, #e0e3e7, #ffffff);
+		transform: translateY(-2px);
+		box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+	}
+	.buttonToplayout {
+		display: flex;
+		justify-content: space-between; /* 將左右按鈕推到兩側 */
+		padding: 0 1rem;
+		margin-bottom: 1rem;
+	}
 	input {
 		background-color: #4e342e0f;
 		height: 3rem;
