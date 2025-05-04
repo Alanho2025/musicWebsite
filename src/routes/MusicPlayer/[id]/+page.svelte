@@ -165,24 +165,7 @@
 {/if}
 
 <style>
-	.buttonToplayout button {
-		background: linear-gradient(145deg, #cfd2d6, #eceff1);
-		border: none;
-		color: #333;
-		padding: 0.6rem 1.5rem;
-		margin: 0 0.5rem;
-		border-radius: 2rem;
-		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-		font-weight: bold;
-		cursor: pointer;
-		transition: all 0.3s ease;
-	}
-
-	.buttonToplayout button:hover {
-		background: linear-gradient(145deg, #e0e3e7, #ffffff);
-		transform: translateY(-2px);
-		box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-	}
+	
 	.buttonToplayout {
 		display: flex;
 		justify-content: space-between; /* 將左右按鈕推到兩側 */

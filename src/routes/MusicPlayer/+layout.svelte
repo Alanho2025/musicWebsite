@@ -94,6 +94,8 @@
 	button {
 		display: block;
 		margin-left: auto;
+		padding: 0rem 1rem;
+		margin: 0 0.5rem;
 	}
 	img {
 		width: 20px;
@@ -102,7 +104,7 @@
 		display: flex;
 		flex-direction: row;
 		box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.3);
-		justify-content: center;
+		justify-content: space-between;
 	}
 	.mainVideo {
 		margin-left: auto;
