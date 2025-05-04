@@ -24,6 +24,7 @@
 				: get(songsStore);
 		sortingSong = source.find((song) => String(song.id) === id);
 		initialized = true;
+		if (!sortingSong.great) sortingSong.great = 0;
 	});
 
 	// reactive 更新（當 id 或 store 改變時）
@@ -101,6 +102,27 @@
 			goto(`/MusicPlayer/${nextSongId}`);
 		}
 	}
+	let value = 0;
+	function great() {
+	if (!sortingSong.great) {
+		sortingSong.great = 1;
+	} else {
+		sortingSong.great += 1;
+	}
+
+	const id = $page.params.id;
+	songsStore.update((songs) => {
+		return songs.map((song) => {
+			if (String(song.id) === id) {
+				return {
+					...song,
+					great: sortingSong.great,
+				};
+			}
+			return song;
+		});
+	});
+}
 </script>
 
 {#if sortingSong}
@@ -118,7 +140,15 @@
 		referrerpolicy="strict-origin-when-cross-origin"
 		allowfullscreen
 	/>
-	<h2>{sortingSong.artist} | {sortingSong.name.toUpperCase()}</h2>
+	<div class="titleLayout">
+		<h2>{sortingSong.artist} | {sortingSong.name.toUpperCase()}</h2>
+		<div class="greatLayout">
+		<button on:click={() => great()}
+			><img src="/data/images/tumb.jpg" alt="great" /></button
+		>
+		<p>{sortingSong.great || 0}</p>
+		</div>
+	</div>
 	<div class="commentLayout">
 		<h3>Comment</h3>
 		<div class="TypeBox">
@@ -165,7 +195,26 @@
 {/if}
 
 <style>
-	
+	.greatLayout{
+		display: flex;
+		padding: 1rem;
+	}
+	.greatLayout p{
+		margin-left: 1rem;
+	}
+	.titleLayout {
+		display: flex;
+		padding: 1rem;
+		justify-content: space-between;
+	}
+
+	.titleLayout img {
+		height: 2rem;
+	}
+	.titleLayout button {
+		margin: 0;
+		padding: 1rem;
+	}
 	.buttonToplayout {
 		display: flex;
 		justify-content: space-between; /* 將左右按鈕推到兩側 */
