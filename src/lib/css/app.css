@@ -60,7 +60,7 @@ h2{
 h3,h4{
     color: #6D4C41;
 }
-p,li,em{
+label,p,li,em{
     list-style: none;
     font-family: "Lora", serif;
     font-optical-sizing: auto;
