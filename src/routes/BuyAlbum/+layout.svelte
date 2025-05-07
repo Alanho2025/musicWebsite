@@ -35,7 +35,7 @@
         <div class="songCard">
             <h2>{song.artist} | {song.name}</h2>
             <img src={song.poster} alt="poster" />
-            <p>Price: {song.price} NZ dollars</p>
+            <p>Price: {song.price} NZD</p>
             <div class="flexLayout">
                 <p>Type amount:</p>
                 <input
@@ -57,7 +57,9 @@
         </div>
     {/each}
 </div>
-
+<div>
+    <slot />
+</div>
 <style>
     p {
         text-align: center;

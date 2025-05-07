@@ -12,9 +12,9 @@
             "dance-pop",
             "LE SSERAFIM"
         ],
-        "music":"https://www.youtube.com/embed/sLMXW_Dij50?si=S0nxfZPR8udzSrAz",
-        "comment":[],
-        "prise":30.05
+        "music": "https://www.youtube.com/embed/sLMXW_Dij50?si=S0nxfZPR8udzSrAz",
+        "comment": [],
+        "price": 30.05
     },
     {
         "id": 2,
@@ -29,9 +29,9 @@
             "collaboration",
             "IVE"
         ],
-        "music":"https://www.youtube.com/embed/Xq-eunLqtfU?si=1q0fGghoImgrqg2r",
+        "music": "https://www.youtube.com/embed/Xq-eunLqtfU?si=1q0fGghoImgrqg2r",
         "comment": [],
-        "prise": 32.05
+        "price": 32.05
     },
     {
         "id": 3,
@@ -46,9 +46,9 @@
             "aespa",
             "futuristic"
         ],
-        "music":"https://www.youtube.com/embed/Os_heh8vPfs?si=4iGpyNsmXkydV6Pc",
+        "music": "https://www.youtube.com/embed/Os_heh8vPfs?si=4iGpyNsmXkydV6Pc",
         "comment": [],
-        "prise": 31.25
+        "price": 31.25
     },
     {
         "id": 4,
@@ -63,9 +63,9 @@
             "fusion",
             "pre-release"
         ],
-        "music":"https://www.youtube.com/embed/gQlMMD8auMs?si=7Jn2ofGzSAKWsN5n",
+        "music": "https://www.youtube.com/embed/gQlMMD8auMs?si=7Jn2ofGzSAKWsN5n",
         "comment": [],
-        "prise": 28.25
+        "price": 28.25
     },
     {
         "id": 5,
@@ -80,9 +80,9 @@
             "IZNA",
             "EP"
         ],
-        "music":"https://www.youtube.com/embed/d3mqW9wqqx0?si=T4i2yDctf9zUTak3",
+        "music": "https://www.youtube.com/embed/d3mqW9wqqx0?si=T4i2yDctf9zUTak3",
         "comment": [],
-        "prise": 26.25
+        "price": 26.25
     },
     {
         "id": 6,
@@ -97,9 +97,9 @@
             "powerful",
             "charisma"
         ],
-        "music":"https://www.youtube.com/embed/eMk_0svqsnI?si=IbQAshVqLqcdHh_e",
+        "music": "https://www.youtube.com/embed/eMk_0svqsnI?si=IbQAshVqLqcdHh_e",
         "comment": [],
-        "prise": 20.25
+        "price": 20.25
     },
     {
         "id": 7,
@@ -114,16 +114,16 @@
             "pop-rock",
             "new wave"
         ],
-        "music":"https://www.youtube.com/embed/ekr2nIex040?si=Dq2QxndPPJZnbO-E",
+        "music": "https://www.youtube.com/embed/ekr2nIex040?si=Dq2QxndPPJZnbO-E",
         "comment": [],
-        "prise": 32.25
+        "price": 32.25
     },
     {
         "id": 8,
         "name": "Ruby",
         "artist": "Jennie",
         "poster": "https://media.pitchfork.com/photos/67c9d295c4d5104730240671/2:3/w_2000,h_3000,c_limit/JENNIE:%20Ruby.jpg",
-    "description": "Jennie's debut solo album 'Ruby' showcases a mix of genres, emphasizing personal empowerment and artistic growth.",
+        "description": "Jennie's debut solo album 'Ruby' showcases a mix of genres, emphasizing personal empowerment and artistic growth.",
         "publish": 2025,
         "tags": [
             "solo",
@@ -131,9 +131,9 @@
             "empowerment",
             "genre-mix"
         ],
-        "music":"https://www.youtube.com/embed/JSFG-IE8n_c?si=Q98v0vdiojf7r1P3",
+        "music": "https://www.youtube.com/embed/JSFG-IE8n_c?si=Q98v0vdiojf7r1P3",
         "comment": [],
-        "prise": 31.25
+        "price": 31.25
     },
     {
         "id": 9,
@@ -148,9 +148,9 @@
             "melodic",
             "debut"
         ],
-        "music":"https://www.youtube.com/embed/YudHcBIxlYw?si=zEqGaJLTT0UpyiMe",
+        "music": "https://www.youtube.com/embed/YudHcBIxlYw?si=zEqGaJLTT0UpyiMe",
         "comment": [],
-        "prise": 30.25
+        "price": 30.25
     },
     {
         "id": 10,
@@ -165,9 +165,9 @@
             "smooth",
             "evolution"
         ],
-        "music":"https://www.youtube.com/embed/bNKXxwOQYB8?si=DlKbgqdPRTpcSgQn",
+        "music": "https://www.youtube.com/embed/bNKXxwOQYB8?si=DlKbgqdPRTpcSgQn",
         "comment": [],
-        "prise": 27.25
+        "price": 27.25
     },
     {
         "id": 11,
@@ -182,9 +182,9 @@
             "IVE",
             "disco"
         ],
-        "music":"https://www.youtube.com/embed/F0B7HDiY-10?si=tvxuiLf6e-dib_ln",
+        "music": "https://www.youtube.com/embed/F0B7HDiY-10?si=tvxuiLf6e-dib_ln",
         "comment": [],
-        "prise": 27.25
+        "price": 27.25
     },
     {
         "id": 12,
@@ -199,9 +199,9 @@
             "innovative",
             "viral"
         ],
-        "music":"https://www.youtube.com/embed/4TWR90KJl84?si=ohd-YagoK-uigWea",
+        "music": "https://www.youtube.com/embed/4TWR90KJl84?si=ohd-YagoK-uigWea",
         "comment": [],
-        "prise": 29.25
+        "price": 29.25
     },
     {
         "id": 13,
@@ -216,9 +216,9 @@
             "resilience",
             "dynamic"
         ],
-        "music":"https://www.youtube.com/embed/ioNng23DkIM?si=K8tv9rUl0B8DwgiP",
+        "music": "https://www.youtube.com/embed/ioNng23DkIM?si=K8tv9rUl0B8DwgiP",
         "comment": [],
-        "prise": 27.25
+        "price": 27.25
     },
     {
         "id": 14,
@@ -233,9 +233,9 @@
             "digital single",
             "growth"
         ],
-        "music":"https://www.youtube.com/embed/88GkYKvnvvI?si=osu79qmv8rKWIPVw",
+        "music": "https://www.youtube.com/embed/88GkYKvnvvI?si=osu79qmv8rKWIPVw",
         "comment": [],
-        "prise": 28.25
+        "price": 28.25
     },
     {
         "id": 15,
@@ -250,9 +250,9 @@
             "confidence",
             "vibrant"
         ],
-        "music":"https://www.youtube.com/embed/wTowEKjDGkU?si=zIM9ZTGuPiQAx17H",
+        "music": "https://www.youtube.com/embed/wTowEKjDGkU?si=zIM9ZTGuPiQAx17H",
         "comment": [],
-        "prise": 28.25
+        "price": 28.25
     },
     {
         "id": 16,
@@ -267,9 +267,9 @@
             "introspective",
             "debut"
         ],
-        "music":"https://www.youtube.com/embed/CKZvWhCqx1s?si=TygL0HPkFO9XS4I9",
+        "music": "https://www.youtube.com/embed/CKZvWhCqx1s?si=TygL0HPkFO9XS4I9",
         "comment": [],
-        "prise": 29.25
+        "price": 29.25
     },
     {
         "id": 17,
@@ -284,9 +284,9 @@
             "EDM-pop",
             "independence"
         ],
-        "music":"https://www.youtube.com/embed/b73BI9eUkjM?si=TMnK6Jkhbbq9ThL2",
+        "music": "https://www.youtube.com/embed/b73BI9eUkjM?si=TMnK6Jkhbbq9ThL2",
         "comment": [],
-        "prise": 30.25
+        "price": 30.25
     },
     {
         "id": 18,
@@ -301,9 +301,9 @@
             "versatility",
             "B-side"
         ],
-        "music":"https://www.youtube.com/embed/z50NUuwI66c?si=YBol60zHX_H8spU0",
+        "music": "https://www.youtube.com/embed/z50NUuwI66c?si=YBol60zHX_H8spU0",
         "comment": [],
-        "prise": 31.25
+        "price": 31.25
     },
     {
         "id": 19,
@@ -318,9 +318,9 @@
             "funk",
             "collaboration"
         ],
-        "music":"https://www.youtube.com/embed/UBURTj20HXI?si=2yu_szEqbIkNPcd9",
+        "music": "https://www.youtube.com/embed/UBURTj20HXI?si=2yu_szEqbIkNPcd9",
         "comment": [],
-        "prise": 32.25
+        "price": 32.25
     },
     {
         "id": 20,
@@ -336,8 +336,8 @@
             "emotional",
             "powerful vocals"
         ],
-        "music":"https://www.youtube.com/embed/2V6lvCUPT8I?si=qaTWkHcZYXnh6o4M",
+        "music": "https://www.youtube.com/embed/2V6lvCUPT8I?si=qaTWkHcZYXnh6o4M",
         "comment": [],
-        "prise": 31.25
+        "price": 31.25
     }
 ]
