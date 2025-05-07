@@ -1,11 +1,11 @@
 body{
     background-color: #FFF8F0;
-    color: #4E342E;
+    color: #333333;
     max-width: 120rem;    
 }
 nav{
     display:flex;
-    background: #FAF3E0;
+    background: linear-gradient(315deg, #FF69B4 , #8A2BE2);
     height:5rem;
     font-family: "Dancing Script", cursive;
     font-optical-sizing: auto;
@@ -51,21 +51,21 @@ h1,h2{
     font-weight: 600;
     font-style: normal;
     text-align:center;
-    color: #3E2723;
+    color: #4B0082;
     text-shadow: 1px 1px 0 rgb(218, 181, 181), 2px 2px 0 #999;
 }
 h2{
     text-shadow: 1px 1px 0 rgb(218, 181, 181), 2px 2px 0 #999;
 }
 h3,h4{
-    color: #6D4C41;
+    color: #4B0082;
 }
 label,p,li,em{
     list-style: none;
     font-family: "Lora", serif;
     font-optical-sizing: auto;
     font-weight: 700;
-    color: #4E342E;
+    color: #333333;
     text-shadow: 0.5px 0.5px 0 rgb(220, 175, 175), 1px 1px 0 #999;
   }
 

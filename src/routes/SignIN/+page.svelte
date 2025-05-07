@@ -2,7 +2,7 @@
     import { goto } from "$app/navigation";
     import { UsersStore } from "$lib/stores/UsersStore.js";
     import { get } from 'svelte/store';
-    let account;
+    let username;
     let password;
     console.table([...get(UsersStore).values()]);
     function submit() {
@@ -11,7 +11,7 @@
             const newMap = new Map(usersMap); // 必須建立新的 map 才會觸發更新
 
             for (let [id, user] of usersMap.entries()) {
-                if (user.account === account && user.password === password) {
+                if (user.username === username && user.password === password) {
                     const updatedUser = {
                         ...user,
                         login_state: true
@@ -22,7 +22,7 @@
                     break; // 停止迴圈
                 }
             }
-            
+
             if (!found) {
                 alert("❌ Account or password is incorrect.");
             }
@@ -38,8 +38,8 @@
 </script>
 
 <div class="mainLayout">
-    <label>Account:</label>
-    <input bind:value={account} />
+    <label>username:</label>
+    <input bind:value={username} />
     <label>password:</label>
     <input bind:value={password} />
 
