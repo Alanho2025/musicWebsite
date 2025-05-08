@@ -29,7 +29,8 @@
         });
     }
 </script>
-
+<h1>Buy Album</h1>
+<p>You can modify your amount to add into cart</p>
 <div class="mainLayout">
     {#each data.songs as song (song.id)}
         <div class="songCard">

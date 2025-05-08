@@ -36,7 +36,9 @@
         goto("/");
     }
 </script>
-
+<svelte:head>
+    <title>Sign in</title>
+</svelte:head>
 <div class="mainLayout">
     <label>username:</label>
     <input bind:value={username} />

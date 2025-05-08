@@ -43,7 +43,9 @@
         goto("/");
     }
 </script>
-
+<svelte:head>
+    <title>Sign up</title>
+</svelte:head>
 <div class="mainLayout">
     <form on:submit|preventDefault={submit}>
         <div class="labelLayout">

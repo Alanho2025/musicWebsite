@@ -124,7 +124,9 @@
 	});
 }
 </script>
-
+<svelte:head>
+    <title>Music Player</title>
+</svelte:head>
 {#if sortingSong}
 	<div class="buttonToplayout">
 		<button on:click={() => goback()}>&larr; Previous</button>

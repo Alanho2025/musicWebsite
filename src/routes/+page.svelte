@@ -19,7 +19,7 @@
     console.log(images);
 </script>
 <svelte:head>
-    <title>Homepage</title>
+    <title>Luminaria music Website</title>
 </svelte:head>
 <h1>Favorite albums</h1>
 

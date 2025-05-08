@@ -11,6 +11,8 @@
         (user) => user.login_state === true
     );
 
+    $: currentUserImage = currentUser?.avatar_url;
+
     function gotoSignUPPage() {
         goto(`/SignUP`);
     }
@@ -72,7 +74,13 @@
                         >UserList</a
                     >
                 </li>
-                <li><span>👋 Hi, {currentUser.first_name}</span></li>
+                <li>
+                    {#if currentUserImage}
+                        <img src={currentUserImage} alt="user-head" />
+                    {:else}
+                        <img src="/default-avatar.png" alt="default avatar" />
+                    {/if}
+                </li>
                 <li><button on:click={logout}>Log Out</button></li>
             {:else}
                 <li><button on:click={gotoSignUPPage}>SIGN UP</button></li>
@@ -90,6 +98,7 @@
         margin-left: auto;
         gap: 1rem;
         align-items: center;
+        margin-bottom: 2rem;
     }
     img {
         width: 3.5rem;
