@@ -31,6 +31,8 @@
 
   p {
     margin-bottom: 1rem;
+    font-size: 1rem;
+
   }
 
   blockquote {
@@ -116,7 +118,7 @@
   <div class="section">
     <h2>👋 Meet the Creator</h2>
     <p>
-      Hi, I’m [Your Name], the mind behind Luminaria.<br />
+      Hi, I’m Alan, the mind behind Luminaria.<br />
       I built this because I believe music should move you—not just fill the silence.
       What started as a coding experiment turned into my passion project.
       Hope you enjoy the journey.
