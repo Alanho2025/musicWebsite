@@ -23,6 +23,7 @@
         height:20rem;
     }
     .columnlayout{
+        padding-top: 1rem;
         display:flex;
         flex-direction: column;
     }

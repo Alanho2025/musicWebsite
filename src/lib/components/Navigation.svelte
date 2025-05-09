@@ -64,7 +64,7 @@
                     >Buy Album</a
                 >
             </li>
-            <li><a href="/Cart" class:active={path === "/Cart"}>Cart</a></li>
+            <li><a href="/Cart" class:active={path === "/Cart"}>Shopping Cart</a></li>
         </div>
 
         <div class="buttonlayout">
