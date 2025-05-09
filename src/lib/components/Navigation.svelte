@@ -98,7 +98,7 @@
         margin-left: auto;
         gap: 1rem;
         align-items: center;
-        margin-bottom: 2rem;
+        margin-bottom: 2.5rem;
     }
     img {
         width: 3.5rem;
