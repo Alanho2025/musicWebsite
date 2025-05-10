@@ -1,4 +1,4 @@
-import { PUBLIC_SONGS_API}from "$env/static/public"
+import { PUBLIC_SONGS_API}from "$env/static/public";
 
 
 export async function load ({fetch}){
