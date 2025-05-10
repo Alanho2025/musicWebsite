@@ -75,6 +75,11 @@
                     >
                 </li>
                 <li>
+                    <a href="/AddData" class:active={path === "/AddData"}
+                        >Add Data</a
+                    >
+                </li>
+                <li>
                     {#if currentUserImage}
                         <img src={currentUserImage} alt="user-head" />
                     {:else}

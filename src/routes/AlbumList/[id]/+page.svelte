@@ -19,7 +19,12 @@
     import { goto } from "$app/navigation";
     import { browser } from "$app/environment";
     let redirected = false;
-    $: if (!redirected && browser && $sortingSongsStore.length > 0 && !$page.params.id) {
+    $: if (
+        !redirected &&
+        browser &&
+        $sortingSongsStore.length > 0 &&
+        !$page.params.id
+    ) {
         redirected = true;
         goto(`/AlbumList/${$sortingSongsStore[0].id}`, { replaceState: true });
     }
@@ -38,7 +43,20 @@
                 <p>{tag}</p>
             {/each}
         </div>
-        <iframe width="560" height="315" src={$sortingSong.music} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        {#each $sortingSong.music as music}
+            <div>
+                <iframe
+                    width="560"
+                    height="315"
+                    src={music}
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                />
+            </div>
+        {/each}
     </div>
 {:else}
     <p>cannot find a song</p>
