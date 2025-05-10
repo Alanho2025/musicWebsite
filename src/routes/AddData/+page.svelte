@@ -1,18 +1,19 @@
 <script>
     import { PUBLIC_SONGS_API } from "$env/static/public";
-
+    import { songsStore } from "$lib/stores/SongsRestore.js";
     // States for adding music to existing album
-    let musicInputs = [""];
+    let editAlbumMusicInputs = [""];
+    let newAlbumMusicInputs = [""];
     let albumToEdit = "";
     let artistToEdit = "";
     let showSuccessMusicAdd = false;
 
     function addMusicField() {
-        musicInputs.push("");
+        editAlbumMusicInputs.push("");
     }
 
     function removeMusicField(index) {
-        musicInputs.splice(index, 1);
+        editAlbumMusicInputs.splice(index, 1);
     }
 
     async function submitNewMusic() {
@@ -35,7 +36,7 @@
                 return;
             }
 
-            const newUrls = musicInputs
+            const newUrls = editAlbumMusicInputs
                 .map((url) => url.trim())
                 .filter((url) => url && !matchedSong.music.includes(url));
 
@@ -60,7 +61,14 @@
 
             if (updateRes.ok) {
                 showSuccessMusicAdd = true;
-                musicInputs = [""];
+                editAlbumMusicInputs = [""];
+
+                const updatedAlbum = { ...matchedSong, music: updatedMusic };
+                songsStore.update((songs) =>
+                    songs.map((song) =>
+                        song.id === matchedSong.id ? updatedAlbum : song
+                    )
+                );
             } else {
                 const errorMsg = await updateRes.text();
                 alert("Update failed: " + errorMsg);
@@ -72,18 +80,24 @@
     }
 
     // States for creating new album
-    let artist = "";
+    let newArtist = "";
     let albumName = "";
     let coverImage = "";
-    let publishYear = 0;
-    let price = 0;
+    let publishYear = "";
+    let price = "";
     let description = "";
     let tags = "";
     let showSuccessAlbumAdd = false;
+    function addNewAlbumMusicField() {
+        newAlbumMusicInputs.push("");
+    }
 
+    function removeNewAlbumMusicField(index) {
+        newAlbumMusicInputs.splice(index, 1);
+    }
     async function submitNewAlbum() {
         try {
-            const trimmedUrls = musicInputs
+            const newMusics = newAlbumMusicInputs
                 .map((url) => url.trim())
                 .filter(Boolean);
 
@@ -92,21 +106,23 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     name: albumName,
-                    artist,
+                    artist: newArtist,
                     poster: coverImage,
                     publish: publishYear,
-                    description,
-                    price,
-                    tags,
-                    music: trimmedUrls,
+                    description: newDescription,
+                    price: price,
+                    tags: tags,
+                    music: newMusics,
                 }),
             });
 
             if (res.ok) {
                 showSuccessAlbumAdd = true;
+                const createdAlbum = await res.json();
+                songsStore.update((songs) => [...songs, createdAlbum]);
                 artist = albumName = coverImage = description = tags = "";
                 publishYear = price = 0;
-                musicInputs = [""];
+                newAlbumMusicInputs = [""];
             } else {
                 const errorText = await res.text();
                 alert("Album creation failed: " + errorText);
@@ -126,26 +142,26 @@
         <input type="text" bind:value={artistToEdit} placeholder="Artist" />
         <input type="text" bind:value={albumToEdit} placeholder="Album Name" />
 
-        {#each musicInputs as url, index}
+        {#each editAlbumMusicInputs as url, index}
             <div class="input-group">
                 <input
                     type="text"
-                    bind:value={musicInputs[index]}
+                    bind:value={editAlbumMusicInputs[index]}
                     placeholder="Music URL"
                 />
-                {#if musicInputs.length > 1}
+                {#if editAlbumMusicInputs.length > 1}
                     <button
                         type="button"
                         class="icon-btn"
-                        on:click={() => removeMusicField(index)}>🗑</button
+                        on:click={() => removeEditMusicField(index)}>🗑</button
                     >
                 {/if}
             </div>
         {/each}
-
-        <button type="button" class="secondary-btn" on:click={addMusicField}
+        <button type="button" class="secondary-btn" on:click={addEditMusicField}
             >➕ Add Another</button
         >
+
         <button type="submit" class="primary-btn">Submit</button>
 
         {#if showSuccessMusicAdd}
@@ -162,7 +178,7 @@
     <!-- Form: Add New Album -->
     <form on:submit|preventDefault={submitNewAlbum} class="form-card">
         <h2>Create New Album</h2>
-        <input type="text" bind:value={artist} placeholder="Artist" />
+        <input type="text" bind:value={newArtist} placeholder="Artist" />
         <input type="text" bind:value={albumName} placeholder="Album Name" />
         <input
             type="text"
@@ -175,33 +191,38 @@
             bind:value={tags}
             placeholder="Tags (comma-separated)"
         />
+        <label>Publish Year</label>
         <input
             type="number"
             bind:value={publishYear}
             placeholder="Publish Year"
         />
+        <label>Album Price</label>
         <input type="number" bind:value={price} placeholder="Price" />
 
-        {#each musicInputs as url, index}
+        {#each newAlbumMusicInputs as url, index}
             <div class="input-group">
                 <input
                     type="text"
-                    bind:value={musicInputs[index]}
+                    bind:value={newAlbumMusicInputs[index]}
                     placeholder="Music URL"
                 />
-                {#if musicInputs.length > 1}
+                {#if newAlbumMusicInputs.length > 1}
                     <button
                         type="button"
                         class="icon-btn"
-                        on:click={() => removeMusicField(index)}>🗑</button
+                        on:click={() => removeNewAlbumMusicField(index)}
+                        >🗑</button
                     >
                 {/if}
             </div>
         {/each}
-
-        <button type="button" class="secondary-btn" on:click={addMusicField}
-            >➕ Add Another</button
+        <button
+            type="button"
+            class="secondary-btn"
+            on:click={addNewAlbumMusicField}>➕ Add Another</button
         >
+
         <button type="submit" class="primary-btn">Submit</button>
 
         {#if showSuccessAlbumAdd}
