@@ -23,11 +23,28 @@ const db = new sqlite3.Database(dbPath, (err) => {
     }
 });
 
+db.serialize(() => {
+    db.run(`
+        CREATE TABLE IF NOT EXISTS songs (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            artist TEXT NOT NULL,
+            music TEXT
+        )
+    `, (err) => {
+        if (err) {
+            console.error("❌ Failed to create 'songs' table:", err.message);
+        } else {
+            console.log("✅ 'songs' table is ready.");
+        }
+    });
+});
 // Import database helper functions
 import {
     retrieveSongs,
     retrieveSongById,
-    addAlbum
+    addAlbum,
+    addMusic
 } from "../../data/songs-dao.js";
 
 // Route: GET /
@@ -36,7 +53,7 @@ router.get("/", async (req, res) => {
     const songs = await retrieveSongs(req.query);
     return res.json(songs);
 });
-
+console.log("📁 DB Path:", dbPath);
 // Route: GET /:id
 // Retrieves a single song by its ID
 router.get("/:id", async (req, res) => {
@@ -49,55 +66,17 @@ router.get("/:id", async (req, res) => {
 // Updates the "music" URLs of a specific song
 router.put("/:id", (req, res) => {
     const songId = parseInt(req.params.id);
-    const updatedMusic = req.body.music;
+    const newMusic = req.body.music;
 
-    // Validate that "music" is an array
-    if (!Array.isArray(updatedMusic)) {
-        return res.status(400).json({ error: "music must be an array." });
-    }
-
-    // Helper function to check if a string is a valid URL
-    const isValidURL = (url) =>
-        typeof url === "string" && /^https?:\/\/.+/.test(url);
-
-    // Validate all items in the array are valid URLs
-    if (!updatedMusic.every(isValidURL)) {
-        return res.status(400).json({ error: "All music URLs must be valid." });
-    }
-
-    // Retrieve the current song by ID
-    db.get('SELECT * FROM songs WHERE id = ?', [songId], (err, song) => {
-        if (err) {
-            return res.status(500).json({ error: `Error retrieving song with id ${songId}: ${err.message}` });
+    try {
+        const updatedSong = addMusic(songId, newMusic);
+        res.status(200).json(updatedSong);
+    } catch (error) {
+        if (typeof error === "string" && error.includes("not found")) {
+            return res.status(404).json({ error });
         }
-
-        if (!song) {
-            return res.status(404).json({ error: `Song with id ${songId} not found.` });
-        }
-
-        // Parse the current music field from JSON
-        let currentMusic = song.music ? JSON.parse(song.music) : [];
-
-        // Merge existing and new music URLs, removing duplicates
-        const uniqueMusic = Array.from(new Set([...currentMusic, ...updatedMusic]));
-
-        // Update the music field in the database
-        db.run('UPDATE songs SET music = ? WHERE id = ?', [JSON.stringify(uniqueMusic), songId], function (err) {
-            if (err) {
-                return res.status(500).json({ error: `Error updating song's music: ${err.message}` });
-            }
-
-            console.log(`✅ Updated music list for '${song.name}'`);
-
-            // Send back updated song object
-            res.status(200).json({
-                id: songId,
-                name: song.name,
-                artist: song.artist,
-                music: uniqueMusic
-            });
-        });
-    });
+        return res.status(400).json({ error: error.toString() });
+    }
 });
 
 // Route: POST /

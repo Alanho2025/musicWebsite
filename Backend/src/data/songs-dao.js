@@ -176,42 +176,42 @@ export function addAlbum(name, artist, poster, description, publish, tags, music
 }
 
 // ➕ Append a new YouTube URL to the music list of an existing song
-export function addMusic(songId, newMusicUrl) {
+export function addMusic(songId, newMusic) {
     return new Promise((resolve, reject) => {
-        // First, get the song from DB
+        if (!Array.isArray(newMusic)) {
+            return reject("Music must be an array.");
+        }
+
+        // Validate all are URLs
+        const isValidURL = (url) => typeof url === "string" && /^https?:\/\/.+/.test(url);
+        if (!newMusic.every(isValidURL)) {
+            return reject("All music URLs must be valid.");
+        }
+
         db.get('SELECT * FROM songs WHERE id = ?', [songId], (err, song) => {
-            if (err) {
-                reject(`Error retrieving song with ID ${songId}: ${err.message}`);
-                return;
+            if (err) return reject(`Error retrieving song with ID ${songId}: ${err.message}`);
+            if (!song) return reject(`Song with ID ${songId} not found.`);
+
+            let currentMusic = [];
+            try {
+                currentMusic = song.music ? JSON.parse(song.music) : [];
+            } catch (e) {
+                return reject("Invalid music data format in DB.");
             }
 
-            if (!song) {
-                reject(`Cannot find song with id ${songId}`);
-                return;
-            }
+            const uniqueMusic = Array.from(new Set([...currentMusic, ...newMusic]));
 
-            // Parse current music array from JSON
-            let musicArray = JSON.parse(song.music || '[]');
+            db.run('UPDATE songs SET music = ? WHERE id = ?', [JSON.stringify(uniqueMusic), songId], function (err) {
+                if (err) return reject(`Error updating music: ${err.message}`);
 
-            // If the new music is not already in the array, add it
-            if (!musicArray.includes(newMusicUrl)) {
-                musicArray.push(newMusicUrl);
-
-                // Update DB with new music list
-                const query = 'UPDATE songs SET music = ? WHERE id = ?';
-                db.run(query, [JSON.stringify(musicArray), songId], function (err) {
-                    if (err) {
-                        reject(`Error adding music to song: ${err.message}`);
-                    } else {
-                        console.log(`✅ Added new music to '${song.name}'`);
-                        resolve(song);
-                    }
+                resolve({
+                    id: songId,
+                    name: song.name,
+                    artist: song.artist,
+                    music: uniqueMusic
                 });
-            } else {
-                // Music already exists, no need to update
-                resolve(song);
-                console.log(`⚠️ Music already exists in '${song.name}'`);
-            }
+            });
         });
     });
 }
+
