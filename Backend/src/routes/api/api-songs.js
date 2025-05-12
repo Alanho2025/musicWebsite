@@ -5,40 +5,7 @@ dotenv.config();
 import express from "express";
 const router = express.Router();
 
-import sqlite3 from 'sqlite3';
-import path from 'path';
 
-// Get the current directory path in ES Module environment
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
-
-// Resolve absolute path to the SQLite database file
-const dbPath = path.resolve(__dirname, 'songs.db'); // Ensure this is the correct path
-
-// Initialize SQLite database connection
-const db = new sqlite3.Database(dbPath, (err) => {
-    if (err) {
-        console.error('❌ Failed to open database:', err.message);
-    } else {
-        console.log('✅ Connected to the song.db database.');
-    }
-});
-
-db.serialize(() => {
-    db.run(`
-        CREATE TABLE IF NOT EXISTS songs (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            artist TEXT NOT NULL,
-            music TEXT
-        )
-    `, (err) => {
-        if (err) {
-            console.error("❌ Failed to create 'songs' table:", err.message);
-        } else {
-            console.log("✅ 'songs' table is ready.");
-        }
-    });
-});
 // Import database helper functions
 import {
     retrieveSongs,
@@ -53,7 +20,7 @@ router.get("/", async (req, res) => {
     const songs = await retrieveSongs(req.query);
     return res.json(songs);
 });
-console.log("📁 DB Path:", dbPath);
+
 // Route: GET /:id
 // Retrieves a single song by its ID
 router.get("/:id", async (req, res) => {
