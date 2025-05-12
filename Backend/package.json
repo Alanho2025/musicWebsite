@@ -1,7 +1,7 @@
 {
   "name": "web-lab-15-rest-apis",
   "version": "1.0.0",
-  "description": "",
+  "description": "In this lab, we'll first build on the previous lab by organizing our code properly using express routers, and by adding some validation of incoming client requests. We will then do an API design exercise, and implement the API you just designed.",
   "main": "src/app.js",
   "type": "module",
   "scripts": {
@@ -21,6 +21,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
+    "sqlite3": "^5.1.7",
     "yup": "^1.3.2"
   }
 }

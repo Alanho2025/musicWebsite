@@ -1,380 +1,80 @@
 import yup from "yup";
-export const songs = [
-    {
-        "id": 1,
-        "name": "hot",
-        "artist": "LE SSERAFIM",
-        "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUtQb9WbxbI4QX55KrnFYvhvvh3HzxKrRrNA&s",
-        "description": "LE SSERAFIM's 2025 hit single 'Hot' blends high-energy EDM beats with a bold girl crush aesthetic, showcasing powerful choreography and visuals.",
-        "publish": 2025,
-        "tags": [
-            "girl group",
-            "EDM",
-            "dance-pop",
-            "LE SSERAFIM"
-        ],
-        "music": ["https://www.youtube.com/embed/sLMXW_Dij50?si=S0nxfZPR8udzSrAz"],
-        "comment": [],
-        "price": 30.05
-    },
-    {
-        "id": 2,
-        "name": "Supernova Love",
-        "artist": "IVE",
-        "poster": "https://i.ytimg.com/vi/Xq-eunLqtfU/hqdefault.jpg",
-        "description": "IVE collaborates with David Guetta in 'Supernova Love', merging K-pop with electronic beats and sampling Ryuichi Sakamoto's 'Merry Christmas Mr. Lawrence'.",
-        "publish": 2024,
-        "tags": [
-            "K-pop",
-            "electronic",
-            "collaboration",
-            "IVE"
-        ],
-        "music": ["https://www.youtube.com/embed/Xq-eunLqtfU?si=1q0fGghoImgrqg2r"],
-        "comment": [],
-        "price": 32.05
-    },
-    {
-        "id": 3,
-        "name": "Spicy",
-        "artist": "aespa",
-        "poster": "https://m.media-amazon.com/images/M/MV5BYzZiNTQ0NjQtZGY1ZS00NTMzLWFjMTEtMjEwODQyYThiYTE1XkEyXkFqcGc@._V1_.jpg",
-        "description": "aespa's 'Spicy' showcases their unique blend of hyper-pop and futuristic visuals, solidifying their position in the K-pop scene.",
-        "publish": 2023,
-        "tags": [
-            "K-pop",
-            "hyper-pop",
-            "aespa",
-            "futuristic"
-        ],
-        "music": ["https://www.youtube.com/embed/Os_heh8vPfs?si=4iGpyNsmXkydV6Pc"],
-        "comment": [],
-        "price": 31.25
-    },
-    {
-        "id": 4,
-        "name": "Pink Venom",
-        "artist": "BLACKPINK",
-        "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCS0pNTGSI2lsDTZx0xhKHx0V1iWMCXBGsBg&s",
-        "description": "BLACKPINK's 'Pink Venom' combines traditional Korean instruments with modern beats, delivering a powerful pre-release single.",
-        "publish": 2022,
-        "tags": [
-            "K-pop",
-            "BLACKPINK",
-            "fusion",
-            "pre-release"
-        ],
-        "music": ["https://www.youtube.com/embed/gQlMMD8auMs?si=7Jn2ofGzSAKWsN5n"],
-        "comment": [],
-        "price": 28.25
-    },
-    {
-        "id": 5,
-        "name": "N/a",
-        "artist": "IZNA",
-        "poster": "https://i.scdn.co/image/ab67616d0000b2732782bd215dcefd7665412b87",
-        "description": "IZNA's debut EP 'N/a' introduces the group's versatility and strong performance skills, marking their entry into the K-pop industry.",
-        "publish": 2024,
-        "tags": [
-            "K-pop",
-            "debut",
-            "IZNA",
-            "EP"
-        ],
-        "music": ["https://www.youtube.com/embed/d3mqW9wqqx0?si=T4i2yDctf9zUTak3"],
-        "comment": [],
-        "price": 26.25
-    },
-    {
-        "id": 6,
-        "name": "GOLD",
-        "artist": "ITZY",
-        "poster": "https://upload.wikimedia.org/wikipedia/en/e/e3/Itzy_-_Gold.jpg",
-        "description": "ITZY's 'GOLD' features powerful vocals and rap, highlighting their cool charisma and unique musical color.",
-        "publish": 2024,
-        "tags": [
-            "K-pop",
-            "ITZY",
-            "powerful",
-            "charisma"
-        ],
-        "music": ["https://www.youtube.com/embed/eMk_0svqsnI?si=IbQAshVqLqcdHh_e"],
-        "comment": [],
-        "price": 20.25
-    },
-    {
-        "id": 7,
-        "name": "APT.",
-        "artist": "Rosé",
-        "poster": "https://upload.wikimedia.org/wikipedia/en/5/52/Ros%C3%A9_and_Bruno_Mars_-_Apt..png",
-        "description": "Rosé's 'APT.' is an up-tempo track blending pop-rock and new wave, inspired by a South Korean drinking game.",
-        "publish": 2024,
-        "tags": [
-            "solo",
-            "Rosé",
-            "pop-rock",
-            "new wave"
-        ],
-        "music": ["https://www.youtube.com/embed/ekr2nIex040?si=Dq2QxndPPJZnbO-E"],
-        "comment": [],
-        "price": 32.25
-    },
-    {
-        "id": 8,
-        "name": "Ruby",
-        "artist": "Jennie",
-        "poster": "https://media.pitchfork.com/photos/67c9d295c4d5104730240671/2:3/w_2000,h_3000,c_limit/JENNIE:%20Ruby.jpg",
-        "description": "Jennie's debut solo album 'Ruby' showcases a mix of genres, emphasizing personal empowerment and artistic growth.",
-        "publish": 2025,
-        "tags": [
-            "solo",
-            "Jennie",
-            "empowerment",
-            "genre-mix"
-        ],
-        "music": ["https://www.youtube.com/embed/JSFG-IE8n_c?si=Q98v0vdiojf7r1P3"],
-        "comment": [],
-        "price": 31.25
-    },
-    {
-        "id": 9,
-        "name": "Flower",
-        "artist": "Jisoo",
-        "poster": "https://kpopofficial.com/wp-content/uploads/2023/06/1-BLACKPINK-JISOO-Flower-Lyrics-Meaning-English-Translation.jpg",
-        "description": "Jisoo's 'Flower' is a melodic track highlighting her vocal prowess and marking her solo debut.",
-        "publish": 2023,
-        "tags": [
-            "solo",
-            "Jisoo",
-            "melodic",
-            "debut"
-        ],
-        "music": ["https://www.youtube.com/embed/YudHcBIxlYw?si=zEqGaJLTT0UpyiMe"],
-        "comment": [],
-        "price": 30.25
-    },
-    {
-        "id": 10,
-        "name": "Easy",
-        "artist": "LE SSERAFIM",
-        "poster": "https://images.genius.com/6c5f6f1f49490b33055d77065ad2257e.1000x1000x1.jpg",
-        "description": "LE SSERAFIM's 'Easy' combines smooth vocals with a catchy beat, reflecting their evolving musical style.",
-        "publish": 2024,
-        "tags": [
-            "K-pop",
-            "LE SSERAFIM",
-            "smooth",
-            "evolution"
-        ],
-        "music": ["https://www.youtube.com/embed/bNKXxwOQYB8?si=DlKbgqdPRTpcSgQn"],
-        "comment": [],
-        "price": 27.25
-    },
-    {
-        "id": 11,
-        "name": "After LIKE",
-        "artist": "IVE",
-        "poster": "https://m.media-amazon.com/images/M/MV5BOWUxYWJjYzEtMzA4Mi00OTk3LTgyN2ItMWVjYzIzZjMzMzNlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-        "description": "IVE's 'After LIKE' samples Gloria Gaynor's 'I Will Survive', blending retro disco with modern K-pop elements.",
-        "publish": 2022,
-        "tags": [
-            "K-pop",
-            "retro",
-            "IVE",
-            "disco"
-        ],
-        "music": ["https://www.youtube.com/embed/F0B7HDiY-10?si=tvxuiLf6e-dib_ln"],
-        "comment": [],
-        "price": 27.25
-    },
-    {
-        "id": 12,
-        "name": "Next Level",
-        "artist": "aespa",
-        "poster": "https://upload.wikimedia.org/wikipedia/en/2/2e/Aespa_-_Next_Level.jpg",
-        "description": "aespa's 'Next Level' is a genre-bending track that became a viral hit, showcasing their innovative approach.",
-        "publish": 2021,
-        "tags": [
-            "K-pop",
-            "aespa",
-            "innovative",
-            "viral"
-        ],
-        "music": ["https://www.youtube.com/embed/4TWR90KJl84?si=ohd-YagoK-uigWea"],
-        "comment": [],
-        "price": 29.25
-    },
-    {
-        "id": 13,
-        "name": "How You Like That",
-        "artist": "BLACKPINK",
-        "poster": "https://upload.wikimedia.org/wikipedia/en/e/eb/Blackpink_-_How_You_Like_That.png",
-        "description": "BLACKPINK's 'How You Like That' delivers a powerful message of resilience with dynamic beats and visuals.",
-        "publish": 2020,
-        "tags": [
-            "K-pop",
-            "BLACKPINK",
-            "resilience",
-            "dynamic"
-        ],
-        "music": ["https://www.youtube.com/embed/ioNng23DkIM?si=K8tv9rUl0B8DwgiP"],
-        "comment": [],
-        "price": 27.25
-    },
-    {
-        "id": 14,
-        "name": "Sign",
-        "artist": "IZNA",
-        "poster": "https://i.scdn.co/image/ab67616d0000b273ab13603a13a48f5e4c8b5f9e",
-        "description": "IZNA's 'Sign' is their first digital single post-debut, showcasing their growth and musical direction.",
-        "publish": 2025,
-        "tags": [
-            "K-pop",
-            "IZNA",
-            "digital single",
-            "growth"
-        ],
-        "music": ["https://www.youtube.com/embed/88GkYKvnvvI?si=osu79qmv8rKWIPVw"],
-        "comment": [],
-        "price": 28.25
-    },
-    {
-        "id": 15,
-        "name": "Not Shy",
-        "artist": "ITZY",
-        "poster": "https://m.media-amazon.com/images/M/MV5BYjc2YTllYTAtYzQzOS00NGY0LWE4NWUtYTI5YmQ2YzRhYzYyXkEyXkFqcGc@._V1_.jpg",
-        "description": "ITZY's 'Not Shy' emphasizes themes of confidence and boldness, with catchy hooks and vibrant visuals.",
-        "publish": 2020,
-        "tags": [
-            "K-pop",
-            "ITZY",
-            "confidence",
-            "vibrant"
-        ],
-        "music": ["https://www.youtube.com/embed/wTowEKjDGkU?si=zIM9ZTGuPiQAx17H"],
-        "comment": [],
-        "price": 28.25
-    },
-    {
-        "id": 16,
-        "name": "On The Ground",
-        "artist": "Rosé",
-        "poster": "https://upload.wikimedia.org/wikipedia/en/2/2f/Ros%C3%A9_-_On_the_Ground.jpg",
-        "description": "Rosé's 'On The Ground' reflects on personal growth and self-realization, marking her solo debut.",
-        "publish": 2021,
-        "tags": [
-            "solo",
-            "Rosé",
-            "introspective",
-            "debut"
-        ],
-        "music": ["https://www.youtube.com/embed/CKZvWhCqx1s?si=TygL0HPkFO9XS4I9"],
-        "comment": [],
-        "price": 29.25
-    },
-    {
-        "id": 17,
-        "name": "SOLO",
-        "artist": "Jennie",
-        "poster": "https://upload.wikimedia.org/wikipedia/en/2/20/Jennie_%E2%80%93_%22Solo%22_%E2%80%93_Digital_Cover.png",
-        "description": "Jennie's 'SOLO' combines EDM-pop elements with lyrics about independence and self-love.",
-        "publish": 2018,
-        "tags": [
-            "solo",
-            "Jennie",
-            "EDM-pop",
-            "independence"
-        ],
-        "music": ["https://www.youtube.com/embed/b73BI9eUkjM?si=TMnK6Jkhbbq9ThL2"],
-        "comment": [],
-        "price": 30.25
-    },
-    {
-        "id": 18,
-        "name": "All Eyes On Me",
-        "artist": "Jisoo",
-        "poster": "https://i1.sndcdn.com/artworks-yPfFinRp0Iwjn5yd-yFGLtg-t500x500.jpg",
-        "description": "Jisoo's 'All Eyes On Me' is a B-side track from her solo debut, highlighting her versatility.",
-        "publish": 2023,
-        "tags": [
-            "solo",
-            "Jisoo",
-            "versatility",
-            "B-side"
-        ],
-        "music": ["https://www.youtube.com/embed/z50NUuwI66c?si=YBol60zHX_H8spU0"],
-        "comment": [],
-        "price": 31.25
-    },
-    {
-        "id": 19,
-        "name": "UNFORGIVEN",
-        "artist": "LE SSERAFIM",
-        "poster": "https://images.genius.com/538d287d5ec77faaacf8d6a56c1768da.1000x1000x1.jpg",
-        "description": "LE SSERAFIM's 'UNFORGIVEN' features a collaboration with Nile Rodgers, blending funk and K-pop.",
-        "publish": 2023,
-        "tags": [
-            "K-pop",
-            "LE SSERAFIM",
-            "funk",
-            "collaboration"
-        ],
-        "music": ["https://www.youtube.com/embed/UBURTj20HXI?si=2yu_szEqbIkNPcd9"],
-        "comment": [],
-        "price": 32.25
-    },
-    {
-        "id": 20,
-        "name": "Earthquake",
-        "artist": "Jisoo",
-        "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzmNaj4f45qnLn3QaQz9tm_jM9pbEVYmmS0A&s",
-        "description": "Jisoo's 'Earthquake' delivers a seismic blend of powerful vocals and emotional depth, expressing inner conflict and personal growth.",
-        "publish": 2025,
-        "tags": [
-            "solo",
-            "Jisoo",
-            "K-pop",
-            "emotional",
-            "powerful vocals"
-        ],
-        "music": ["https://www.youtube.com/embed/2V6lvCUPT8I?si=qaTWkHcZYXnh6o4M"],
-        "comment": [],
-        "price": 31.25
+import sqlite3 from 'sqlite3';
+import path from 'path';
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+const dbPath = path.resolve(__dirname, 'songs.db'); // Ensure this is the correct path
+
+const db = new sqlite3.Database(dbPath, (err) => {
+    if (err) {
+        console.error('Failed to open database:', err.message);
+    } else {
+        console.log('Connected to the song.db database.');
     }
-]
+});
 
 export function retrieveSongs(search) {
-    let matchingSongs = songs;
+    return new Promise((resolve, reject) => {
+        let query = 'SELECT * FROM songs';
+        let params = [];
 
-    if (!search) return matchingSongs;
+        // 建立查詢條件
+        if (search) {
+            const { name, artist, publish } = search;
+            const conditions = [];
 
-    const { name, artist, publish } = search;
+            if (name) {
+                conditions.push('name LIKE ?');
+                params.push(`%${name}%`);
+            }
 
-    // 如果有指定 name
-    if (name) {
-        matchingSongs = matchingSongs.filter(song =>
-            song.name.toLowerCase().includes(name.toLowerCase())
-        );
-    }
+            if (artist) {
+                conditions.push('artist LIKE ?');
+                params.push(`%${artist}%`);
+            }
 
-    // 如果有指定 artist
-    if (artist) {
-        matchingSongs = matchingSongs.filter(song =>
-            song.artist.toLowerCase().match(song.toLowerCase())
-        );
-    }
+            if (publish) {
+                conditions.push('publish = ?');
+                params.push(publish);
+            }
 
-    // 如果有指定 publish
-    if (publish) {
-        matchingSongs = matchingSongs.filter(song =>
-            song.publish.toLowerCase() === publish.toLowerCase()
-        );
-    }
+            if (conditions.length > 0) {
+                query += ' WHERE ' + conditions.join(' AND ');
+            }
+        }
 
-    return matchingSongs;
+        db.all(query, params, (err, rows) => {
+            if (err) {
+                reject('Error retrieving songs from the database: ' + err.message);
+            } else {
+                // ✅ 把 JSON 欄位轉回陣列/物件
+                const parsedRows = rows.map(row => {
+                    try {
+                        return {
+                            ...row,
+                            tags: JSON.parse(row.tags || '[]'),
+                            music: JSON.parse(row.music || '[]'),
+                            comment: JSON.parse(row.comment || '[]')
+                        };
+                    } catch (e) {
+                        console.warn('JSON parse error in row:', row);
+                        return row;
+                    }
+                });
+                resolve(parsedRows);
+            }
+        });
+    });
 }
 export function retrieveSongById(id) {
-    return songs.find((song) => song.id == id);
+    return new Promise((resolve, reject) => {
+        db.get('SELECT * FROM songs WHERE id = ?', [id], (err, row) => {
+            if (err) {
+                reject('Error retrieving song by ID: ' + err.message);
+            } else {
+                resolve(row);
+            }
+        });
+    });
 }
 
 const createMusicSchema = yup
@@ -419,20 +119,40 @@ export function addAlbum(name, artist, poster, description, publish, tags, music
         poster,
         description,
         publish,
-        tags,
-        music,
+        tags: JSON.stringify(tags), // You may need to store tags as JSON
+        music: JSON.stringify(music), // Store music URLs as JSON
         price
     };
+
     try {
-        //validate data
         createAlbumSchema.validateSync(newAlbumData);
-        const newAlbum = {
-            id: songs.length > 0 ? songs[songs.length - 1].id + 1 : 1,
-            ...newAlbumData
-        };
-        songs.push(newAlbum);
-        console.log(`🎉 Album '${songs.name}' added successfully!`);
-        return newAlbum;
+
+        const query = `INSERT INTO albums (name, artist, poster, description, publish, tags, music, price)
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+
+        db.run(query, [
+            newAlbumData.name,
+            newAlbumData.artist,
+            newAlbumData.poster,
+            newAlbumData.description,
+            newAlbumData.publish,
+            newAlbumData.tags,
+            newAlbumData.music,
+            newAlbumData.price
+        ], function (err) {
+            if (err) {
+                console.error('❌ Error adding album:', err.message);
+                return null;
+            } else {
+                const newAlbum = {
+                    id: this.lastID,  // The ID generated by SQLite
+                    ...newAlbumData
+                };
+                console.log(`🎉 Album '${newAlbum.name}' added successfully!`);
+                return newAlbum;
+            }
+        });
+
     } catch (error) {
         console.error("❌ Invalid album data:", error.errors || error.message);
         return null;
@@ -440,24 +160,36 @@ export function addAlbum(name, artist, poster, description, publish, tags, music
 }
 
 
-export function addmusic(songId, newMusicUrl) {
-    const song = songs.find(s => s.id === songId);
+export function addMusic(songId, newMusicUrl) {
+    return new Promise((resolve, reject) => {
+        db.get('SELECT * FROM songs WHERE id = ?', [songId], (err, song) => {
+            if (err) {
+                reject(`Error retrieving song with ID ${songId}: ${err.message}`);
+                return;
+            }
 
-    if (!song) {
-        console.error(`Cannot find song with id ${songId}`);
-        return null;
-    }
+            if (!song) {
+                reject(`Cannot find song with id ${songId}`);
+                return;
+            }
 
-    if (!Array.isArray(song.music)) {
-        song.music = [];
-    }
+            let musicArray = JSON.parse(song.music || '[]');
 
-    if (!song.music.includes(newMusicUrl)) {
-        song.music.push(newMusicUrl);
-        console.log(`✅ Added new music to '${song.name}'`);
-    } else {
-        console.log(`⚠️ Music already exists in '${song.name}'`);
-    }
-
-    return song;
+            if (!musicArray.includes(newMusicUrl)) {
+                musicArray.push(newMusicUrl);
+                const query = 'UPDATE songs SET music = ? WHERE id = ?';
+                db.run(query, [JSON.stringify(musicArray), songId], function (err) {
+                    if (err) {
+                        reject(`Error adding music to song: ${err.message}`);
+                    } else {
+                        console.log(`✅ Added new music to '${song.name}'`);
+                        resolve(song);
+                    }
+                });
+            } else {
+                resolve(song);
+                console.log(`⚠️ Music already exists in '${song.name}'`);
+            }
+        });
+    });
 }
