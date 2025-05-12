@@ -1,26 +1,40 @@
 <script>
+    // Import environment variable for API endpoint
     import { PUBLIC_SONGS_API } from "$env/static/public";
+    // Import Svelte store for managing songs
     import { songsStore } from "$lib/stores/SongsRestore.js";
-    // States for adding music to existing album
+
+    // ==== States for editing an existing album ====
+
+    // Array of input fields for new song URLs
     let editAlbumMusicInputs = [""];
+    // Array of input fields for creating new album music
     let newAlbumMusicInputs = [""];
+    // Album name being edited
     let albumToEdit = "";
+    // Artist name being edited
     let artistToEdit = "";
+    // Show success message after adding music
     let showSuccessMusicAdd = false;
 
+    // Add a new input field for adding song URL
     function addMusicField() {
         editAlbumMusicInputs.push("");
     }
 
+    // Remove a specific input field for song URL
     function removeMusicField(index) {
         editAlbumMusicInputs.splice(index, 1);
     }
 
+    // Submit new music to an existing album
     async function submitNewMusic() {
         try {
+            // Fetch existing songs from API
             const response = await fetch(PUBLIC_SONGS_API);
             const songs = await response.json();
 
+            // Try to match existing album by artist and album name
             const matchedSong = songs.find(
                 (song) =>
                     song.artist.toLowerCase().trim() ===
@@ -29,6 +43,7 @@
                         albumToEdit.toLowerCase().trim()
             );
 
+            // Alert if album is not found
             if (!matchedSong) {
                 alert(
                     "No matching album found. Please check artist and album name."
@@ -36,6 +51,7 @@
                 return;
             }
 
+            // Remove empty strings and duplicates
             const newUrls = editAlbumMusicInputs
                 .map((url) => url.trim())
                 .filter((url) => url && !matchedSong.music.includes(url));
@@ -45,8 +61,10 @@
                 return;
             }
 
+            // Combine existing and new music URLs
             const updatedMusic = [...matchedSong.music, ...newUrls];
 
+            // Update the album with new music URLs via PUT
             const updateRes = await fetch(
                 `${PUBLIC_SONGS_API}${matchedSong.id}`,
                 {
@@ -59,6 +77,7 @@
                 }
             );
 
+            // If update successful, update store and UI
             if (updateRes.ok) {
                 showSuccessMusicAdd = true;
                 editAlbumMusicInputs = [""];
@@ -79,28 +98,36 @@
         }
     }
 
-    // States for creating new album
-    let newArtist = "";
-    let albumName = "";
-    let coverImage = "";
-    let publishYear = "";
-    let price = "";
-    let description = "";
-    let tags = "";
-    let showSuccessAlbumAdd = false;
+    // ==== States for creating a new album ====
+
+    let newArtist = "";          // Artist name for new album
+    let albumName = "";          // Album name
+    let coverImage = "";         // Album cover image URL
+    let publishYear = "";        // Album release year
+    let price = "";              // Album price
+    let description = "";        // Album description
+    let tags = "";               // Album tags
+    let showSuccessAlbumAdd = false; // Show success message after album creation
+
+    // Add new music input field for new album
     function addNewAlbumMusicField() {
         newAlbumMusicInputs.push("");
     }
 
+    // Remove specific music input field for new album
     function removeNewAlbumMusicField(index) {
         newAlbumMusicInputs.splice(index, 1);
     }
+
+    // Submit new album creation form
     async function submitNewAlbum() {
         try {
+            // Clean and validate music URLs
             const newMusics = newAlbumMusicInputs
                 .map((url) => url.trim())
                 .filter(Boolean);
 
+            // Make POST request to create new album
             const res = await fetch(PUBLIC_SONGS_API, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -109,7 +136,7 @@
                     artist: newArtist,
                     poster: coverImage,
                     publish: publishYear,
-                    description: newDescription,
+                    description: description, 
                     price: price,
                     tags: tags,
                     music: newMusics,
@@ -119,8 +146,12 @@
             if (res.ok) {
                 showSuccessAlbumAdd = true;
                 const createdAlbum = await res.json();
+
+                // Update store with new album
                 songsStore.update((songs) => [...songs, createdAlbum]);
-                artist = albumName = coverImage = description = tags = "";
+
+                // Reset form fields
+                newArtist = albumName = coverImage = description = tags = "";
                 publishYear = price = 0;
                 newAlbumMusicInputs = [""];
             } else {
