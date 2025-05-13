@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import { requiresAuthentication } from "../../middleware/auth-middleware.js";
 dotenv.config();
 
 import {
@@ -32,5 +33,9 @@ router.get("/", async (req, res) => {
 
     return res.json(await retrieveUsersSearch(search));
 });
+
+
+
+
 
 export default router;

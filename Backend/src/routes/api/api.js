@@ -8,4 +8,6 @@ router.use("/songs", songsRoutes);
 
 import usersRoutes from "./api-users.js";
 router.use("/users", usersRoutes);
+import authRoutes from "./api-users.js";
+router.use("/auth", authRoutes);
 export default router;

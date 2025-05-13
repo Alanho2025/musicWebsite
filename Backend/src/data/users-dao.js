@@ -111,3 +111,32 @@ export async function retrieveUsersSearch(search) {
 
     return users;
 }
+
+export async function getUserWithUsername(username) {
+    if (!username) return null;
+
+    const user = await db.get(
+        `
+        SELECT * FROM Users
+        WHERE username = ?
+        `,
+        username
+    );
+
+    return user || null;
+}
+
+export async function getUserWithCredentials(username, password) {
+    if (!username || !password) return null;
+
+    const user = await db.get(
+        `
+        SELECT * FROM Users
+        WHERE username = ? AND password = ?
+        `,
+        username,
+        password
+    );
+
+    return user || null;
+}
