@@ -1,5 +1,5 @@
 import express from "express";
-import { getUserWithCredentials } from "../../db/users-dao.js";
+import { getUserWithCredentials } from "../../data/users-dao.js";
 import { createUserJWT } from "../../utils/jwt-utils.js";
 
 const router = express.Router();

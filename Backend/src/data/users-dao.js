@@ -2,7 +2,7 @@ import yup from "yup";
 import sqlite3 from 'sqlite3';
 import path from 'path';
 import { promisify } from 'util';
-
+import { fileURLToPath } from 'url';
 
 
 
@@ -20,61 +20,77 @@ const dbAll = promisify(db.all.bind(db));
 
 
 export const createUserSchema = yup.object({
-    first_name: yup.string().required("First name is required"),
-    last_name: yup.string().required("Last name is required"),
-    username: yup.string().required("Username is required"),
-    email: yup.string().email("Invalid email format").required("Email is required"),
-    password: yup.string()
-        .min(6, "Password must be at least 6 characters")
-        .required("Password is required"),
-    confirmPassword: yup.string()
-        .oneOf([yup.ref("password"), null], "Passwords must match")
-        .required("Confirm password is required"),
-    birthday: yup.date().required("Birthday is required"),
-    gender: yup.string().oneOf(["female", "male", "nonbinary", "prefer-not-to-say"]).required("Gender is required"),
+    first_name: yup.string().required("❗ first_name is required"),
+    last_name: yup.string().required("❗ last_name is required"),
+    username: yup.string().required("❗ username is required"),
+    password: yup.string().min(6, "❗ password must be at least 6 characters").required("❗ password is required"),
+    email: yup.string().email("❗ invalid email format").required("❗ email is required"),
+    birthday: yup.date().typeError("❗ birthday must be a valid date").required("❗ birthday is required"),
+    gender: yup.string().oneOf(["female", "male", "nonbinary", "prefer-not-to-say"], "❗ invalid gender value").required("❗ gender is required"),
     phone: yup.string().notRequired(),
-    avatar_url: yup.string()
-        .url("Avatar must be a valid URL")
-        .nullable(),
-    login_state: yup.boolean().default(false)
+    avatar_url: yup.string().url("❗ avatar_url must be a valid URL").nullable()
 }).required();
-export async function createUser(userData) {
-    const newUser = createUserSchema.validateSync(userData, {
-        abortEarly: false,
-        stripUnknown: true // 避免多餘欄位進入資料庫
+function dbRunWithLastID(sql, ...params) {
+    return new Promise((resolve, reject) => {
+        db.run(sql, params, function (err) {
+            if (err) {
+                return reject(err);
+            }
+            resolve({ lastID: this.lastID });
+        });
     });
+}
+export async function createUser(userData) {
+    try {
+        console.log("📥 Received user data:", userData);
 
-    const result = await dbRun(
-        `
-        INSERT INTO Users (
-            first_name,
-            last_name,
-            username,
-            email,
-            password,
-            confirmPassword,
-            birthday,
-            gender,
-            phone,
-            avatar_url,
-            login_state
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        `,
-        newUser.first_name,
-        newUser.last_name,
-        newUser.username,
-        newUser.email,
-        newUser.password,
-        newUser.confirmPassword,
-        newUser.birthday,
-        newUser.gender,
-        newUser.phone,
-        newUser.avatar_url,
-        newUser.login_state
-    );
+        const newUser = createUserSchema.validateSync(userData, {
+            abortEarly: false,
+            stripUnknown: false
+        });
 
-    newUser.id = result.lastID;
-    return newUser;
+        console.log("✅ Validation passed. Inserting into DB...");
+
+        const result = await dbRunWithLastID(
+            `
+            INSERT INTO Users (
+                first_name,
+                last_name,
+                username,
+                email,
+                password,
+                birthday,
+                gender,
+                phone,
+                avatar_url
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            `,
+            newUser.first_name,
+            newUser.last_name,
+            newUser.username,
+            newUser.email,
+            newUser.password,
+            newUser.birthday,
+            newUser.gender,
+            newUser.phone,
+            newUser.avatar_url
+        );
+
+        newUser.id = result.lastID;
+        console.log("🎉 User successfully created with ID:", newUser.id);
+        return newUser;
+
+    } catch (err) {
+        if (err.name === 'ValidationError') {
+            console.error("🚫 Validation errors:");
+            err.inner.forEach(e => {
+                console.error(` - ${e.path}: ${e.message}`);
+            });
+        } else {
+            console.error("💥 Unexpected error during user creation:", err.message || err);
+        }
+        throw err;
+    }
 }
 
 export async function retrieveUsers() {
@@ -125,15 +141,13 @@ export async function getUserWithUsername(username) {
 
     return user || null;
 }
+const dbGet = promisify(db.get.bind(db));
 
 export async function getUserWithCredentials(username, password) {
     if (!username || !password) return null;
 
-    const user = await db.get(
-        `
-        SELECT * FROM Users
-        WHERE username = ? AND password = ?
-        `,
+    const user = await dbGet(
+        `SELECT * FROM Users WHERE username = ? AND password = ?`,
         username,
         password
     );

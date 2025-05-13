@@ -4,11 +4,11 @@ CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY,
     first_name TEXT,
     last_name TEXT,
+    username TEXT,
     password TEXT,
+    email TEXT, 
     birthday TEXT,
-    login_state TEXT,
-    email TEXT,       
-    gender TEXT,      
+    gender TEXT, 
+    phone TEXT,
     avatar_url TEXT,    
-    gender TEXT
 );
