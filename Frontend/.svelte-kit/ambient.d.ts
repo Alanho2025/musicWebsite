@@ -99,6 +99,8 @@ declare module '$env/static/private' {
  */
 declare module '$env/static/public' {
 	export const PUBLIC_SONGS_API: string;
+	export const PUBLIC_USERS_API: string;
+	export const PUBLIC_AUTH_API: string;
 }
 
 /**
@@ -197,6 +199,8 @@ declare module '$env/dynamic/private' {
 declare module '$env/dynamic/public' {
 	export const env: {
 		PUBLIC_SONGS_API: string;
+		PUBLIC_USERS_API: string;
+		PUBLIC_AUTH_API: string;
 		[key: `PUBLIC_${string}`]: string | undefined;
 	}
 }

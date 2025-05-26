@@ -37,8 +37,9 @@
     }
 </script>
 <svelte:head>
-    <title>Sign in</title>
+    <title>Log in</title>
 </svelte:head>
+<h1>Log in</h1>
 <div class="mainLayout">
     <label>username:</label>
     <input bind:value={username} />
