@@ -35,9 +35,9 @@ export const dictionary = {
 		"/MusicPlayer": [13,[5]],
 		"/MusicPlayer/[id]": [14,[5]],
 		"/Pay": [15],
-		"/SignIN": [16],
-		"/SignUP": [17],
-		"/Userlist": [18]
+		"/SignUP": [16],
+		"/Userlist": [17],
+		"/login": [18]
 	};
 
 export const hooks = {

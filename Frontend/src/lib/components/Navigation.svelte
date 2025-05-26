@@ -18,7 +18,7 @@
     }
 
     function gotoSignINPage() {
-        goto(`/SignIN`);
+        goto(`/login`);
     }
 
     function logout() {
@@ -89,7 +89,7 @@
                 <li><button on:click={logout}>Log Out</button></li>
             {:else}
                 <li><button on:click={gotoSignUPPage}>SIGN UP</button></li>
-                <li><button on:click={gotoSignINPage}>SIGN IN</button></li>
+                <li><button on:click={gotoSignINPage}>Log it</button></li>
             {/if}
         </div>
     </ul>
